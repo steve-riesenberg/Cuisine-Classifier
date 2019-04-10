@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+
+<head>
+    <a href='templates/notebook.html'>See how the model was built.</a> 
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <title>Cuisine Classifier</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST" id='iform'>
+	<textarea name='ingredients' rows='10' cols='65' placeholder='Type or copy your ingredients here, separated by commas or new lines.'></textarea>
+	<br>
+	<input type = 'submit'>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br> Predicted cuisine:
+           <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+
+</html>
